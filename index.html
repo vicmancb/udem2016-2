@@ -5,10 +5,16 @@
       <title>Enfasis 2016</title>
    </head>
    <body>
-      esta es la primer linea
-      esto se hizo desde la rama test
-      esta es la primer cosa
-		y asi es como quiero que quede
+      <button type="button" name="button" onclick="selectOption('Piedra')">Piedra</button>
+      <button type="button" name="button" onclick="selectOption('Papel')">Papel</button>
+      <button type="button" name="button" onclick="selectOption('Tijera')">Tijera</button>
+
+      <div>Gano: <span id="gano">0</span></div>
+      <div>Perdio: <span id="empato">0</span></div>
+      <div>Empato: <span id="perdio">0</span></div>
+
+      <script type="text/javascript" src="jquery-1.11.2.js"></script>
+      <script type="text/javascript" src="script.js"></script>
 
    </body>
 </html>

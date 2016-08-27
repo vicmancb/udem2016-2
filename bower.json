@@ -1,0 +1,21 @@
+{
+  "name": "repo",
+  "homepage": "https://github.com/vicmancb/udem2016-2",
+  "authors": [
+    "Victor Manuel Cataño"
+  ],
+  "description": "esta es la primer implementacion de bower",
+  "main": "index.html",
+  "moduleType": [],
+  "keywords": [
+    "udem",
+    "repo",
+    "clase",
+    "victor",
+    "el",
+    "mejor",
+    "profe"
+  ],
+  "license": "MIT",
+  "private": true
+}
