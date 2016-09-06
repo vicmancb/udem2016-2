@@ -1,0 +1,16 @@
+body{
+    background-color: #b4d4fe;
+}
+
+#opt-container {
+    margin-top: 20px;
+}
+
+
+.opt {
+    width: 100%;
+}
+
+.results{
+    width: 100% !important;
+}
