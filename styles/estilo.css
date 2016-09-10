@@ -1,0 +1,12 @@
+body {
+  background-color: #a5fe9e;
+}
+#opt-container {
+  margin-top: 20px;
+}
+#opt-container .opt {
+  width: 100%;
+}
+.results {
+  width: 100% !important;
+}
