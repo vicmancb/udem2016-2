@@ -1,81 +1,48 @@
 "use strict";
 
-var gano, empato, perdio;
-gano = 0;
-empato = 0;
-perdio = 0;
+var pokemonList = [];
 
-var miAjax = function(){
-    console.log('peticion http');
-    // $.ajax('https://restcountries.eu/rest/v1/all')
+
+var getNumber = function(url){
+    var arr  = url.split('/');
+    return arr[arr.length - 2];
+};
+
+var render = function (pokemon) {
+    var pokemonElement = '<div class="col-md-3"> ' +
+        '<div class="poke-ball"> ' +
+        '<img src="' + pokemon.img + '"> ' +
+        '<span>' + pokemon.name + '</span> ' +
+        '</div>' +
+        '</div>';
+    $('#list').append(pokemonElement);
+};
+
+var loadPokemon = function(){
     $.ajax({
         method: "GET",
-        url: "https://restcountries.eu/rest/v1/all"
+        url: "https://udem.herokuapp.com/parcial"
     })
         .done(function(response) {
-            $.each(response, function(index, country){
-                var elemCountry = '<div>Nombre: ' + country.name + '<br>' +
-                    'Capital: ' + country.capital + '</div> ';
-                $('#countries').append(elemCountry);
-
-                var langList = '';
-                $.each(country.languages, function (index, lang) {
-                    langList += lang + ', ';
-                });
-                console.log(country.name + ': ', langList);
+            $.each(response.results, function (index, pokemon) {
+                var pokemonObj = {
+                    name : pokemon.name,
+                    img : 'https://raw.githubusercontent.com/vicmancb/pokemon/master/'+ getNumber(pokemon.url) +'.png'
+                };
+                pokemonList.push(pokemonObj);
+                render(pokemonObj);
             });
-        })
-        .fail(function() {
-            console.log( "error" );
-        })
-        .always(function() {
-            console.log( "complete" );
         });
 };
 
-
-var selectOption = function(user){
-
-    miAjax();
-
-    var rand = Math.floor(Math.random()*3+1);
-    var opt = ['Piedra','Papel','Tijera'];
-    var mach = opt[rand];
-
-    if(user === 'Piedra'){
-        if(mach === 'Papel'){
-            perdio++;
+var find = function () {
+    var text = $('#search').val();
+    $('#list').html('');
+    $.each(pokemonList, function (index, pokemon) {
+        if(pokemon.name.includes(text)){
+            render(pokemon);
         }
-        else if(mach === 'Tijera'){
-            gano++;
-        }
-        else
-            empato++;
-    }
-    else if(user === 'Papel'){
-        if(mach === 'Piedra'){
-            gano++;
-        }
-        else if(mach === 'Tijera'){
-            perdio++;
-        }
-        else
-            empato++;
-    }
-    else {
-        if(mach === 'Piedra'){
-            perdio++;
-        }
-        else if(mach === 'Papel'){
-            gano++;
-        }
-        else
-            empato++;
-    }
-
-    $('#gano').html(gano);
-    $('#perdio').html(perdio);
-    $('#empato').html(empato);
-
-
+    });
 };
+
+loadPokemon();

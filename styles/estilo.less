@@ -1,16 +1,26 @@
-@bg : #a5fe9e;
+@bg : rgba(238, 238, 238, 0.26);
+
+.margin {
+  margin-top: 30px;
+}
 
 body{
   background-color: @bg;
-}
+  #form {
+    .margin;
+  }
 
-#opt-container {
-  margin-top: 20px;
-  .opt {
-    width: 100%;
-
+  #list {
+    .margin;
+    .poke-ball {
+      background-color: #FFF;
+      border: 1px #BBB solid;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
   }
 }
+
 
 
 

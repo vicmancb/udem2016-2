@@ -1,11 +1,20 @@
+.margin {
+  margin-top: 30px;
+}
 body {
-  background-color: #a5fe9e;
+  background-color: rgba(238, 238, 238, 0.26);
 }
-#opt-container {
-  margin-top: 20px;
+body #form {
+  margin-top: 30px;
 }
-#opt-container .opt {
-  width: 100%;
+body #list {
+  margin-top: 30px;
+}
+body #list .poke-ball {
+  background-color: #FFF;
+  border: 1px #BBB solid;
+  border-radius: 20px;
+  margin-bottom: 10px;
 }
 .results {
   width: 100% !important;
