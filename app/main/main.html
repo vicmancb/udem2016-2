@@ -1,3 +1,10 @@
+
+{{listController.diego}}<br>
+{{listController.diego}}<br>
+{{listController.diego}}<br>
+{{listController.diego}}<br>
+{{listController.diego}}<br>
+{{listController.diego}}<br>
 <div class="container">
     <div id="form" class="row">
         <div class="col-md-6 col-md-offset-3 input-group">
@@ -5,20 +12,23 @@
                    type="text"
                    class="form-control"
                    placeholder="Search for..."
-                   ng-model="listController.search">
+                   ng-model="listController.diego">
             <span class="input-group-btn">
                 <button class="btn btn-default" type="button" ng-click="listController.find()">Go!</button>
             </span>
         </div>
     </div>
     <div class="row" id="list">
-        <div class="col-md-3"
-             ng-repeat="pokemon in listController.pokemonList | filter: listController.executeSearch"
-             ui-sref="detail({pokemonID : pokemon.id})">
-            <div class="poke-ball">
-                <img src="{{pokemon.img}}">
-                <span>{{pokemon.name}}</span>
-            </div>
-        </div>
+        <my-pokemon ng-repeat="pokemon in listController.pokemonList | filter: listController.executeSearch"
+                    name="pokemon.name"
+        ></my-pokemon>
+        <!--<div class="col-md-3"-->
+             <!--ng-repeat="pokemon in listController.pokemonList | filter: listController.executeSearch"-->
+             <!--ui-sref="detail({pokemonID : pokemon.id})">-->
+            <!--<div class="poke-ball">-->
+                <!--<img src="{{pokemon.img}}">-->
+                <!--<span>{{pokemon.name}}</span>-->
+            <!--</div>-->
+        <!--</div>-->
     </div>
 </div>

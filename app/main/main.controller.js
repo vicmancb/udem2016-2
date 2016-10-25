@@ -3,16 +3,11 @@
  */
 
 angular.module('pokemonApp')
-    .controller('listController', function ($http) {
+    .controller('listController', function ($scope, $http, mainService) {
         var self = this;
+        this.diego = "hola parce";
         self.search = self.executeSearch = '';
         self.pokemonList = [];
-
-
-        var getNumber = function(url){
-            var arr  = url.split('/');
-            return arr[arr.length - 2];
-        };
 
         // var render = function (pokemon) {
         //     var pokemonElement = '<div class="col-md-3"> ' +
@@ -25,22 +20,17 @@ angular.module('pokemonApp')
         // };
 
         var loadPokemon = function(){
-            $http({
-                method: 'GET',
-                url: "https://udem.herokuapp.com/parcial"
-            }).then(function successCallback(response) {
-                angular.forEach(response.data.results, function (pokemon) {
-                    console.log("tatata");
-                    var pokemonObj = {
-                        id : getNumber(pokemon.url),
-                        name : pokemon.name,
-                        img : 'https://raw.githubusercontent.com/vicmancb/pokemon/master/'+ getNumber(pokemon.url) +'.png'
-                    };
-                    self.pokemonList.push(pokemonObj);
+            mainService.loadPokemon()
+                .then(function successCallback(pokemonList) {
+                    console.log("desde controlador", pokemonList);
+                    angular.forEach(pokemonList, function (pokemon) {
+                        pokemon.img = 'https://raw.githubusercontent.com/vicmancb/pokemon/master/'+ pokemon.id +'.png'
+                    });
+                    self.pokemonList = pokemonList;
+                })
+                .catch( function errorCallback(response) {
+                    console.log('esta vaina falló', response);
                 });
-            }, function errorCallback(response) {
-               console.log('esta vaina falló', response);
-            });
         };
 
         self.find = function () {
